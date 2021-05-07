@@ -1,0 +1,71 @@
+{
+  "db": {
+    "dsn": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "", 
+      "user": "", 
+      "password": "",
+      "application_name": "dpdb"
+    },
+    "max_connections": 100
+  },
+  "db_admin": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "",
+    "user": "",
+    "password": "",
+    "application_name": "dpdb-admin"
+  },
+  "htd": {
+    "path": "<PATH_TO>/htd_main",
+    "parameters": [
+      "--child-limit","5"
+    ]
+  },
+  "problem_specific": {
+    "nestpmc": {
+      "max_solver_threads": 12,
+      "inner_vars_threshold": 40,
+      "max_worker_threads": 12
+    }
+  },
+  "nesthdb": {
+    "threshold_hybrid" : 1000,
+    "threshold_abstract" : 38,
+    "max_recursion_depth" : 1,
+    "sat_solver": {
+      "path": "<PATH_TO>/programs/picosat-965",
+      "seed_arg": "-s"
+    },
+    "sharpsat_solver": {
+      "path": "<PATH_TO>/sharpSAT-git",
+      "output_parser": {
+        "class": "RegExReader",
+        "args": {
+          "pattern": "(?sm)# solutions.*?\\n(\\d+)\\n# END"
+        },
+        "result":"result"
+      }
+    },
+    "preprocessor": {
+      "path": "<PATH_TO>/pmc-1.0",
+      "args": "-vivification -eliminateLit -litImplied -iterate=10"
+    },
+    "asp": {
+      "encodings": [
+          { 
+            "file": "./guess_min_degree.lp",
+            "size": 95,
+            "timeout": 10
+          },
+	  { 
+            "file": "./guess_increase2.lp",
+            "size": 64,
+            "timeout" : 35
+          }
+      ]
+    }
+  }
+}
