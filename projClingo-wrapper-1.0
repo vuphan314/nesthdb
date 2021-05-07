@@ -16,7 +16,7 @@ if len(sys.argv) > 3:
 	rarg = random.randrange(13423423471) #int(sys.argv[2])
 	#random.seed(int(sys.argv[2]))
 	fi = 3
- 
+
 f = sys.stdin if len(sys.argv) == fi else file(sys.argv[fi], "rb")
 svar = set()
 for r in f:
@@ -53,4 +53,3 @@ pmc.wait()
 
 fo.close()
 sys.exit(pmc.returncode)
-

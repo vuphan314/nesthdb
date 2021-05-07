@@ -36,7 +36,7 @@ class TreeDecomp(object):
                             leaf = False
                 if leaf:
                     self.leafs.append(new_node)
-            
+
         visited = set([root])
         add_nodes(root)
 

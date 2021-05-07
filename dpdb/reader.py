@@ -82,7 +82,7 @@ class DimacsReader(Reader):
             if line.startswith("p ") or line.startswith("s "):
                 line = line.split()
                 self.problem_solution_type = line[0]
-                self.format = line[1] 
+                self.format = line[1]
                 self._problem_vars = line[2:]
                 return lineno+1
             elif not line or self.is_comment(line):
@@ -94,7 +94,7 @@ class DimacsReader(Reader):
                     logger.warning("Invalid content in preamble at line %d: %s", lineno, line)
         logger.error("No type found in DIMACS file!")
         sys.exit(1)
-        
+
 class CnfReader(DimacsReader):
     def __init__(self, silent=False):
         super().__init__(silent)
@@ -179,7 +179,7 @@ class CnfReader(DimacsReader):
         if self.format != "cnf":
             logger.error("Not a cnf file!")
             sys.exit(1)
-        
+
         maxvar = 0
         #projected_vars = set()
 
@@ -207,7 +207,7 @@ class CnfReader(DimacsReader):
                     self.single_clauses.add(clause[0])
                 else:
                     self.clauses.append(clause)
-                    
+
         # simplify with single clauses, avoid copies, do it at most 10 times in a row
         iterate = 0
         removed_singles = True
@@ -289,7 +289,7 @@ class TdReader(DimacsReader):
         if self.format != "td":
             logger.error("Not a td file!")
             sys.exit(1)
-        
+
         for lineno, line in enumerate(lines):
             if not line:
                 continue

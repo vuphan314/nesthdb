@@ -233,7 +233,7 @@ class Problem:
 
         logger.info(f"Solver {type} result: {result}")
         return result
-    
+
     def solve_classic(self):
         if interrupted:
             return -1
@@ -394,4 +394,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

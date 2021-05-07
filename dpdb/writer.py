@@ -78,7 +78,7 @@ class Writer(object):
         for c in clauses:
             self.writeline("{} 0".format(" ".join(map(str,c))))
         self.flush()
-        
+
 class StreamWriter(Writer):
     def __init__(self, stream):
         self.stream = stream
